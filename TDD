@@ -1,0 +1,148 @@
+import java.util.List;
+
+public class CustomList<E> implements List<E> {
+	private Object[] internal = {};
+	// empty implementation methods
+	
+	@Override
+	public boolean isEmpty() {
+		return false;
+	}
+
+	@Test
+	pubic void givenEmptyist_whenisEmpty_thenTrueIsReturned() {
+		List<Object> list = new CustomList<> ();
+		
+		assertTrue(list.isEmpty());
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return true;
+	}
+	
+	@Test
+	public void givenNonEmptyList_whenisEmpty_thenFalseIsReturned() {
+		List<Object> list = new CustomList<>();
+		list.add(null);
+		
+		assertFalse(list.isEmpty());
+	}
+	
+	@Override
+	public boolean add(E element) {
+		return false;
+	}
+	
+	@Override
+	public boolean add(E element) {
+	    internal = new Object[] { element };
+	    return false;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		if (internal.length != 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return internal.length == 0;
+	}
+	
+	@Override
+	public int size() {
+		return 0;
+	}
+	
+	@Test
+	public void givenListWithAnElement_whenSize_thenOneIsReturned() {
+		List<Object> list = new CustomList<>();
+		list.add(null);
+		
+		assertEquals(1, list.size());
+	}
+	
+	@Override
+	public int size() {
+		if (isEmpty()) {
+			return 0;
+		}else {
+			return internal.length;
+		}
+	}
+	
+	@Override
+	public int size() {
+		return internal.length;
+	}
+	
+	@Override
+	public E get(int index) {
+		return null;
+	}
+	
+	@Test
+	public void givenListWithAnElement_whenGet_thenThatElementIsReturned() {
+		List<Object> list = new CustomList<> ();
+		list.add("baeldung");
+		Object element = list.get(0);
+		
+		assertEquals("baeldung", element);
+	}
+	
+	@Override
+	public E get(int) {
+		return (E) internal[0];
+	}
+	
+	@Override
+	public E get(int index) {
+		return (E) internal[index];
+	}
+	
+	@Override
+	public boolean add(E element) {
+		internal = new Object[] { element
+	};
+		return false;
+	}
+	
+	@Test
+	public void givenEmptyList_whenElementIsAdded_thenGetReturnsThatElement() {
+		List<Object> list = new CustomList<>();
+		boolean succeeded = list.add(null);
+		
+		assertTrue(succeeded);
+	}
+	
+	@Override
+	public boolean add(E element) {
+		internal = new Object[] { element };
+		return true;
+	}
+	
+	@Test
+	public void givenListWithAnElement_whenAnotherIsAdded_thenGetReturnsBoth() {
+		   List<Object> list = new CustomList<>();
+		    list.add("baeldung");
+		    list.add(".com");
+		    Object element1 = list.get(0);
+		    Object element2 = list.get(1);
+		 
+		    assertEquals("baeldung", element1);
+		    assertEquals(".com", element2);
+	}
+	
+	@Override
+	public boolean add(E element) {
+	    Object[] temp = Arrays.copyOf(internal, internal.length + 1);
+	    temp[internal.length] = element;
+	    internal = temp;
+	    return true;
+	}
+}
